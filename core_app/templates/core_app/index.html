@@ -1,0 +1,542 @@
+{% extends "core_app/base.html" %}
+{% load static %}
+
+{% block title %}TOPORAHMA — Logiciel Professionnel de Topographie & Urbanisme{% endblock %}
+{% block meta_description %}TOPORAHMA : solution tout-en-un pour la topographie, l'urbanisme, la visualisation 3D et le calcul d'ingenierie. Telecharger gratuitement.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/toporahma.css' %}">
+{% endblock %}
+
+{% block body %}
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="{% url 'home' %}" class="nav-logo">
+                <img class="nav-logo-icon" src="{% static 'images/bourahma.png' %}" alt="TOPORAHMA">
+                <span class="nav-logo-text">TOPORAHMA</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#concepteur">Concepteur</a></li>
+                <li><a href="#about">Presentation</a></li>
+                <li><a href="#features">Fonctionnalites</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#formats">Formats</a></li>
+                <li><a href="#download" class="nav-cta">Telecharger</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONCEPTEUR -->
+    <section class="concepteur" id="concepteur">
+        <div class="concepteur-bg"></div>
+        <div class="section-inner">
+            <div class="concepteur-card reveal">
+                <div class="concepteur-avatar">
+                    <img src="{% static 'images/perso.jfif' %}" alt="Bourahma Ouattara Djakalia"
+                         onerror="this.style.display='none'; this.parentElement.querySelector('.concepteur-avatar-fallback').style.display='flex';">
+                    <div class="concepteur-avatar-fallback" style="display:none;">BOD</div>
+                </div>
+                <div class="concepteur-info">
+                    <div class="concepteur-tag reveal reveal-delay-1">Concepteur & Developpeur</div>
+                    <h2 class="concepteur-name reveal reveal-delay-2">Bourahma Ouattara Djakalia</h2>
+                    <p class="concepteur-title reveal reveal-delay-3">Geometre Topographe &bull; Geomaticien &bull; Architecte Logiciel & Web SIG</p>
+                    <p class="concepteur-bio reveal reveal-delay-4">Passionne par la technologie et l'innovation, j'ai concu TOPORAHMA pour offrir aux geometres topographes et urbanistes une solution professionnelle complete, adaptee aux realites du terrain africain.</p>
+                    <div class="concepteur-links reveal reveal-delay-5">
+                        <a href="{% url 'portfolio' %}" class="concepteur-link" title="Portfolio">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            Portfolio
+                        </a>
+                        <a href="https://wa.me/2250707779890" target="_blank" rel="noopener" class="concepteur-link whatsapp" title="WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A6.58,6.58,0,0,1,4,8c-.8,4,3,8,7,8s7-4,7-8A6.58,6.58,0,0,1,22,9Z"/></svg>
+                            WhatsApp
+                        </a>
+                        <a href="mailto:bourahmaouattara@gmail.com" class="concepteur-link" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                        <a href="https://www.linkedin.com/in/djekett-ouattara-687427213/" target="_blank" rel="noopener" class="concepteur-link linkedin" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="particles" id="particles"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Version 1.0 disponible
+            </div>
+
+            <h1 class="hero-title">TOPORAHMA</h1>
+
+            <p class="hero-subtitle">
+                La solution professionnelle tout-en-un pour la topographie,
+                l'urbanisme et la visualisation 3D. Du releve de terrain au plan
+                de lotissement en quelques heures.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{% url 'download_form' %}" class="btn btn-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Telecharger gratuitement
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+                    </svg>
+                    Decouvrir
+                </a>
+            </div>
+
+            <!-- Dynamic stats -->
+            <div class="hero-stats">
+                {% for stat in stats %}
+                <div class="hero-stat reveal{% if not forloop.first %} reveal-delay-{{ forloop.counter0 }}{% endif %}">
+                    {% if stat.data_count %}
+                    <div class="hero-stat-value" data-count="{{ stat.data_count }}">0</div>
+                    {% else %}
+                    <div class="hero-stat-value">{{ stat.value }}</div>
+                    {% endif %}
+                    <div class="hero-stat-label">{{ stat.label }}</div>
+                </div>
+                {% empty %}
+                <!-- Fallback stats if DB is empty -->
+                <div class="hero-stat reveal">
+                    <div class="hero-stat-value" data-count="120">0</div>
+                    <div class="hero-stat-label">Modules</div>
+                </div>
+                <div class="hero-stat reveal reveal-delay-1">
+                    <div class="hero-stat-value" data-count="15">0</div>
+                    <div class="hero-stat-label">Formats supportes</div>
+                </div>
+                <div class="hero-stat reveal reveal-delay-2">
+                    <div class="hero-stat-value">3D</div>
+                    <div class="hero-stat-label">Visualisation</div>
+                </div>
+                <div class="hero-stat reveal reveal-delay-3">
+                    <div class="hero-stat-value">100%</div>
+                    <div class="hero-stat-label">Professionnel</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-visual reveal">
+                    <div class="about-visual-inner">
+                        <img src="{% static 'images/img_pricipal.png' %}" alt="Interface TOPORAHMA" style="width: 100%; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <h2 class="reveal">Du releve terrain au <span>plan d'urbanisme</span></h2>
+                    <p class="reveal reveal-delay-1">
+                        TOPORAHMA est une suite logicielle professionnelle qui integre
+                        dans un seul outil tout ce dont les topographes, urbanistes et
+                        ingenieurs ont besoin : modelisation de terrain, subdivision
+                        automatique, visualisation 3D LIDAR et calculs d'ingenierie.
+                    </p>
+                    <p class="reveal reveal-delay-2">
+                        Concue pour les projets africains avec le support natif des
+                        systemes de coordonnees UTM, du datum Abidjan 87 et de la
+                        monnaie FCFA pour les estimations VRD.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="about-highlight reveal reveal-delay-3">
+                            <div class="about-highlight-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <span class="about-highlight-text">Lotissement automatique</span>
+                        </div>
+                        <div class="about-highlight reveal reveal-delay-4">
+                            <div class="about-highlight-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <span class="about-highlight-text">LIDAR & nuages de points</span>
+                        </div>
+                        <div class="about-highlight reveal reveal-delay-5">
+                            <div class="about-highlight-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <span class="about-highlight-text">Calculs de cubatures</span>
+                        </div>
+                        <div class="about-highlight reveal reveal-delay-6">
+                            <div class="about-highlight-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <span class="about-highlight-text">Export multi-formats</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES (Dynamic) -->
+    <section class="features" id="features">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Fonctionnalites</div>
+                <h2 class="section-title reveal reveal-delay-1">Une plateforme complete</h2>
+                <p class="section-desc reveal reveal-delay-2">Tous les outils professionnels dont vous avez besoin, integres dans une seule application.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="features-grid">
+                {% for feature in features %}
+                <div class="feature-card reveal{% if not forloop.first %} reveal-delay-{{ forloop.counter0 }}{% endif %}">
+                    <div class="feature-icon {{ feature.icon_css_class }}">
+                        {{ feature.icon_svg|safe }}
+                    </div>
+                    <h3 class="feature-title">{{ feature.title }}</h3>
+                    <p class="feature-desc">{{ feature.description }}</p>
+                    <div class="feature-tags">
+                        {% for tag in feature.tags.all %}
+                        <span class="feature-tag">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% empty %}
+                <!-- Fallback: static features if DB is empty -->
+                <div class="feature-card reveal">
+                    <div class="feature-icon topo">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20L8.5 8.5 14 14 22 4"/><path d="M22 4L16 4 22 10"/></svg>
+                    </div>
+                    <h3 class="feature-title">Topographie & MNT</h3>
+                    <p class="feature-desc">Generation automatique de modeles numeriques de terrain, courbes de niveau, analyse de pentes et profils en long.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Delaunay</span>
+                        <span class="feature-tag">Courbes de niveau</span>
+                        <span class="feature-tag">Profils</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon visu">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+                    </div>
+                    <h3 class="feature-title">Visualisation 3D</h3>
+                    <p class="feature-desc">Moteur 3D haute performance pour nuages de points LIDAR avec optimisation Octree. Animation de camera et export video.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">LIDAR</span>
+                        <span class="feature-tag">Octree</span>
+                        <span class="feature-tag">Animation</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon urban">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3 class="feature-title">Urbanisme & Lotissement</h3>
+                    <p class="feature-desc">Subdivision automatique de parcelles, conception de reseaux routiers, estimation VRD et gestion des contraintes urbanistiques.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Parcelles</span>
+                        <span class="feature-tag">Voirie</span>
+                        <span class="feature-tag">VRD</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon dao">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                    </div>
+                    <h3 class="feature-title">DAO & Dessin technique</h3>
+                    <p class="feature-desc">Outils complets de dessin 2D : polylignes, cercles, arcs, annotations, cotations avec systeme d'accrochage intelligent.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Polylignes</span>
+                        <span class="feature-tag">Annotations</span>
+                        <span class="feature-tag">Snapping</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon geo">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 class="feature-title">Geodesie & Projections</h3>
+                    <p class="feature-desc">Support EPSG complet, zones UTM, datum Abidjan 87. Conversion de coordonnees en temps reel et transformations geodesiques.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">EPSG</span>
+                        <span class="feature-tag">UTM</span>
+                        <span class="feature-tag">Abidjan 87</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-5">
+                    <div class="feature-icon calc">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+                    </div>
+                    <h3 class="feature-title">Calculs d'ingenierie</h3>
+                    <p class="feature-desc">Cubatures deblai/remblai, calculs de cheminement, releves polaires, intersection, relevement et profils en travers.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Cubatures</span>
+                        <span class="feature-tag">Cheminement</span>
+                        <span class="feature-tag">Polaire</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-6">
+                    <div class="feature-icon io">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3 class="feature-title">Import / Export</h3>
+                    <p class="feature-desc">Plus de 15 formats supportes : DXF, Shapefile, GeoJSON, KML, LandXML, GeoTIFF, LAS/LAZ, ASCII Grid, PLY et bien plus.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">DXF</span>
+                        <span class="feature-tag">SHP</span>
+                        <span class="feature-tag">LAS</span>
+                        <span class="feature-tag">GeoTIFF</span>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-7">
+                    <div class="feature-icon print">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    </div>
+                    <h3 class="feature-title">Composition & Impression</h3>
+                    <p class="feature-desc">Composeur de plans professionnel avec modeles, echelle, legende, grille et export haute resolution pour impression.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">Templates</span>
+                        <span class="feature-tag">Legende</span>
+                        <span class="feature-tag">Export HD</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Apercu</div>
+                <h2 class="section-title reveal reveal-delay-1">Interface & Visualisations</h2>
+                <p class="section-desc reveal reveal-delay-2">Decouvrez l'interface professionnelle et les rendus 3D de TOPORAHMA.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item large reveal">
+                    <div class="gallery-item-placeholder">
+                        <img src="{% static 'images/img_pricipal.png' %}" alt="Interface principale" style="width: 100%; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-item-placeholder">
+                        <img src="{% static 'images/mnt_3d.png' %}" alt="MNT 3D" style="width: 100%; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-item-placeholder">
+                        <img src="{% static 'images/lotis.png' %}" alt="Lotissement" style="width: 100%; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-3">
+                    <div class="gallery-item-placeholder">
+                        <img src="{% static 'images/mnt_2d.png' %}" alt="MNT 2D" style="width: 100%; max-width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMATS -->
+    <section class="formats" id="formats">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Interoperabilite</div>
+                <h2 class="section-title reveal reveal-delay-1">Formats supportes</h2>
+                <p class="section-desc reveal reveal-delay-2">Compatible avec les standards de l'industrie pour une integration fluide dans vos workflows existants.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="formats-container reveal reveal-delay-4">
+                <div class="format-badge">
+                    <div class="format-badge-icon cad">DXF</div>
+                    <div><div class="format-badge-name">DXF / DWG</div><div class="format-badge-desc">AutoCAD</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon gis">SHP</div>
+                    <div><div class="format-badge-name">Shapefile</div><div class="format-badge-desc">ESRI</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon web">GEO</div>
+                    <div><div class="format-badge-name">GeoJSON</div><div class="format-badge-desc">Web GIS</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon web">KML</div>
+                    <div><div class="format-badge-name">KML / KMZ</div><div class="format-badge-desc">Google Earth</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon data">XML</div>
+                    <div><div class="format-badge-name">LandXML</div><div class="format-badge-desc">Topographie</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon raster">TIF</div>
+                    <div><div class="format-badge-name">GeoTIFF</div><div class="format-badge-desc">Raster</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon lidar">LAS</div>
+                    <div><div class="format-badge-name">LAS / LAZ</div><div class="format-badge-desc">LIDAR</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon data">CSV</div>
+                    <div><div class="format-badge-name">CSV / TXT</div><div class="format-badge-desc">Tabulaire</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon raster">ASC</div>
+                    <div><div class="format-badge-name">ASCII Grid</div><div class="format-badge-desc">Elevation</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon lidar">PLY</div>
+                    <div><div class="format-badge-name">PLY</div><div class="format-badge-desc">3D Mesh</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon gis">GPK</div>
+                    <div><div class="format-badge-name">GeoPackage</div><div class="format-badge-desc">OGC</div></div>
+                </div>
+                <div class="format-badge">
+                    <div class="format-badge-icon cad">GEN</div>
+                    <div><div class="format-badge-name">Genio</div><div class="format-badge-desc">Civil</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="workflow" id="workflow">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Flux de travail</div>
+                <h2 class="section-title reveal reveal-delay-1">Simple & Efficace</h2>
+                <p class="section-desc reveal reveal-delay-2">De l'acquisition des donnees au plan final, un processus fluide et integre.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="workflow-steps">
+                <div class="workflow-step reveal">
+                    <div class="workflow-step-number">1</div>
+                    <div class="workflow-step-title">Importation</div>
+                    <div class="workflow-step-desc">Importez vos releves de terrain, nuages de points LIDAR ou fichiers existants dans plus de 15 formats.</div>
+                </div>
+                <div class="workflow-step reveal reveal-delay-1">
+                    <div class="workflow-step-number">2</div>
+                    <div class="workflow-step-title">Modelisation</div>
+                    <div class="workflow-step-desc">Generez automatiquement le MNT, les courbes de niveau, les pentes et les profils.</div>
+                </div>
+                <div class="workflow-step reveal reveal-delay-2">
+                    <div class="workflow-step-number">3</div>
+                    <div class="workflow-step-title">Conception</div>
+                    <div class="workflow-step-desc">Concevez votre lotissement, reseau routier et calculez les cubatures et couts VRD.</div>
+                </div>
+                <div class="workflow-step reveal reveal-delay-3">
+                    <div class="workflow-step-number">4</div>
+                    <div class="workflow-step-title">Production</div>
+                    <div class="workflow-step-desc">Composez vos plans, generez les rapports et exportez dans le format de votre choix.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="download" id="download">
+        <div class="download-bg-glow"></div>
+        <div class="section-inner">
+            <div class="download-card reveal">
+                <div class="download-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </div>
+
+                <h2 class="download-title">Telecharger TOPORAHMA</h2>
+                <p class="download-desc">Obtenez la derniere version de TOPORAHMA pour Windows. Installation simple, pret a l'emploi.</p>
+
+                <a href="{% url 'download_form' %}" class="download-btn" id="downloadBtn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Telecharger pour Windows
+                </a>
+
+                <div class="download-meta">
+                    <div class="download-meta-item">
+                        <div class="download-meta-label">Version</div>
+                        <div class="download-meta-value">2.0</div>
+                    </div>
+                    <div class="download-meta-item">
+                        <div class="download-meta-label">Taille</div>
+                        <div class="download-meta-value">~900 Mo</div>
+                    </div>
+                    <div class="download-meta-item">
+                        <div class="download-meta-label">Plateforme</div>
+                        <div class="download-meta-value">Windows 10 / 11</div>
+                    </div>
+                    <div class="download-meta-item">
+                        <div class="download-meta-label">Licence</div>
+                        <div class="download-meta-value">Gratuit</div>
+                    </div>
+                </div>
+
+                <div class="download-requirements">
+                    <div class="download-req-title">Configuration minimale requise</div>
+                    <div class="download-req-list">
+                        <div class="download-req-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Windows 10 (64-bit)
+                        </div>
+                        <div class="download-req-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            8 Go RAM
+                        </div>
+                        <div class="download-req-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            GPU compatible OpenGL
+                        </div>
+                        <div class="download-req-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            2 Go d'espace disque
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="footer-logo">TR</div>
+                <span class="footer-copy">&copy; 2026 TOPORAHMA. Tous droits reserves.</span>
+            </div>
+            <div class="footer-right">
+                <a href="#about" class="footer-link">Presentation</a>
+                <a href="#features" class="footer-link">Fonctionnalites</a>
+                <a href="#download" class="footer-link">Telecharger</a>
+                <a href="{% url 'portfolio' %}" class="footer-link">Portfolio</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/toporahma.js' %}"></script>
+{% endblock %}

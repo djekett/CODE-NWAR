@@ -1,0 +1,473 @@
+{% extends "core_app/base.html" %}
+{% load static %}
+
+{% block title %}Merci ! — Telecharger TOPORAHMA{% endblock %}
+{% block meta_description %}Votre telechargement de TOPORAHMA est pret. Soutenez le projet via Wave et partagez votre retour pour ameliorer le logiciel.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/download.css' %}">
+{% endblock %}
+
+{% block body %}
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="{% url 'portfolio' %}" class="nav-logo">
+            <img class="nav-logo-icon" src="{% static 'images/bourahma.png' %}" alt="TR logo">
+            <span>TOPORAHMA</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'home' %}">TOPORAHMA</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="dl-page">
+    <div class="dl-bg-glow"></div>
+    <div class="section-inner">
+
+        {% if messages %}
+            <div class="dl-messages">
+                {% for message in messages %}
+                    <div class="dl-alert dl-alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- SUCCESS HEADER -->
+        <div class="dl-hero dl-success-hero reveal">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="48" height="48">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </div>
+            <h1 class="dl-hero-title">Merci {{ download_request.full_name|default:"" }} !</h1>
+            <p class="dl-hero-subtitle">
+                Votre demande est enregistree. TOPORAHMA est pret a etre telecharge.
+                Un grand bravo pour votre choix — nous sommes ravis de vous compter
+                parmi la communaute des utilisateurs.
+            </p>
+        </div>
+
+        <!-- DOWNLOAD CTA CARD -->
+        <div class="dl-download-card reveal">
+            <div class="dl-download-left">
+                <div class="dl-download-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="dl-download-title">TOPORAHMA v2.0 — Windows</h2>
+                    <p class="dl-download-desc">
+                        Fichier d'installation complet (~900 Mo).
+                        Le telechargement demarrera immediatement.
+                    </p>
+                    <div class="dl-download-meta">
+                        <span class="dl-meta-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Windows 10/11
+                        </span>
+                        <span class="dl-meta-chip">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 2l3 7h7l-6 4 2 8-6-4-6 4 2-8-6-4h7z"/></svg>
+                            100% gratuit
+                        </span>
+                        <span class="dl-meta-chip dl-meta-chip-verified">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M20 6L9 17l-5-5"/></svg>
+                            Verifie
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'download_file' pk=download_request.id %}" class="btn btn-primary dl-download-btn" id="mainDownloadBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Telecharger TOPORAHMA
+            </a>
+        </div>
+
+        <!-- SUPPORT TEASER BANNER -->
+        <div class="support-teaser reveal" id="supportTeaser">
+            <div class="support-teaser-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+            </div>
+            <div class="support-teaser-content">
+                <strong>TOPORAHMA est gratuit — mais pas sans cout.</strong>
+                Soutenez le projet pour aider a financer les mises a jour et les
+                nouvelles fonctionnalites.
+            </div>
+            <button type="button" class="btn btn-primary support-teaser-btn" data-open-modal="support">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                Soutenir le projet
+            </button>
+        </div>
+
+        <!-- FEEDBACK SECTION -->
+        <div class="feedback-section reveal" id="feedback">
+            <div class="feedback-intro">
+                <div class="feedback-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 22 12 17.27 5.79 22l2.39-8.15L2 9.36h7.61z"/></svg>
+                    Votre avis vaut de l'or
+                </div>
+                <h2 class="feedback-title">Aidez-nous a rendre TOPORAHMA encore meilleur</h2>
+                <p class="feedback-desc">
+                    Votre retour, meme court, est <strong>la chose la plus precieuse que vous puissiez
+                    nous offrir</strong>. Chaque remarque alimente directement la prochaine version.
+                    Les suggestions les plus demandees sont <strong>integrees en priorite</strong>.
+                </p>
+            </div>
+
+            <form method="post" class="feedback-form">
+                {% csrf_token %}
+
+                <div class="form-row form-row-2">
+                    <div class="form-group">
+                        <label for="{{ feedback_form.full_name.id_for_label }}">Nom (optionnel)</label>
+                        {{ feedback_form.full_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ feedback_form.email.id_for_label }}">Email (optionnel)</label>
+                        {{ feedback_form.email }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ feedback_form.rating.id_for_label }}">Note globale sur 5</label>
+                        {{ feedback_form.rating }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ feedback_form.what_liked.id_for_label }}">Ce que vous avez aime</label>
+                        {{ feedback_form.what_liked }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ feedback_form.what_to_improve.id_for_label }}">Ce qui doit etre ameliore</label>
+                        {{ feedback_form.what_to_improve }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ feedback_form.features_wanted.id_for_label }}">Fonctionnalites que vous aimeriez voir</label>
+                        {{ feedback_form.features_wanted }}
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    {{ feedback_form.would_recommend }}
+                    <label for="{{ feedback_form.would_recommend.id_for_label }}">
+                        Je recommanderais TOPORAHMA a un collegue.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary feedback-submit">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Envoyer mon retour
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===================== FLOATING SUPPORT BUTTON ===================== -->
+<button type="button" class="floating-support" id="floatingSupport" data-open-modal="support" aria-label="Soutenir TOPORAHMA">
+    <span class="floating-support-pulse"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+    <span class="floating-support-label">Soutenir</span>
+</button>
+
+<!-- ===================== SUPPORT MODAL (WAVE) ===================== -->
+<div class="modal-backdrop" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportModalTitle" aria-hidden="true">
+    <div class="modal-shell">
+        <button type="button" class="modal-close" data-close-modal aria-label="Fermer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <div class="wave-card modal-wave">
+            <div class="wave-card-header">
+                <div class="wave-logo-badge">
+                    <span class="wave-dot"></span>
+                    Soutien volontaire via Wave
+                </div>
+                <h2 class="wave-title" id="supportModalTitle">
+                    TOPORAHMA est 100% gratuit.<br>
+                    <span class="wave-title-accent">Mais son developpement a un cout.</span>
+                </h2>
+                <p class="wave-intro">
+                    Ce logiciel a demande <strong>des milliers d'heures de travail, des tests sur le terrain
+                    et des licences de developpement</strong> finances entierement sur fonds propres.
+                    En le rendant gratuit, l'objectif est simple : <strong>outiller les professionnels
+                    africains avec les memes armes que les grands cabinets internationaux.</strong>
+                </p>
+                <p class="wave-intro">
+                    Si TOPORAHMA vous fait gagner du temps ou remporter un marche,
+                    <strong>une contribution libre, meme de 1 000 FCFA</strong>,
+                    nous permet de continuer a le faire evoluer et d'ajouter les fonctionnalites
+                    que <em>vous</em> demandez.
+                </p>
+            </div>
+
+            <div class="wave-body">
+                <div class="wave-col wave-col-info">
+                    <div class="wave-label">Envoyer via Wave</div>
+                    <div class="wave-number" id="waveNumber" data-number="{{ wave_number_clean }}">
+                        {{ wave_number }}
+                    </div>
+                    <button type="button" class="wave-copy" id="waveCopyBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        <span id="waveCopyLabel">Copier le numero</span>
+                    </button>
+
+                    <div class="wave-amounts-label">Montants suggeres</div>
+                    <div class="wave-amounts">
+                        <button type="button" class="wave-amount" data-amount="1000">1 000<br><small>FCFA</small></button>
+                        <button type="button" class="wave-amount" data-amount="2000">2 000<br><small>FCFA</small></button>
+                        <button type="button" class="wave-amount wave-amount-hot" data-amount="5000">5 000<br><small>FCFA</small></button>
+                        <button type="button" class="wave-amount" data-amount="10000">10 000<br><small>FCFA</small></button>
+                    </div>
+                    <p class="wave-free-amount">
+                        Ou <strong>le montant de votre choix</strong> — chaque franc compte.
+                    </p>
+                </div>
+
+                <div class="wave-col wave-col-steps">
+                    <div class="wave-steps-title">En 30 secondes</div>
+                    <ol class="wave-steps">
+                        <li>Ouvrir <strong>Wave</strong> sur votre telephone</li>
+                        <li>Choisir <strong>Envoyer de l'argent</strong></li>
+                        <li>Saisir <strong>{{ wave_number }}</strong></li>
+                        <li>Entrer le montant</li>
+                        <li>Valider avec votre code PIN</li>
+                    </ol>
+
+                    <a href="https://wa.me/{{ wave_number_clean }}?text=Bonjour%20Djakalia%2C%20je%20viens%20de%20telecharger%20TOPORAHMA%20et%20j%27aimerais%20contribuer."
+                       target="_blank" rel="noopener" class="wave-whatsapp">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12a11.9 11.9 0 0 0 1.64 6L0 24l6.2-1.62A12 12 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.24-6.21-3.48-8.52zM12 22a9.94 9.94 0 0 1-5.07-1.38l-.36-.22-3.68.96.98-3.58-.23-.37A9.94 9.94 0 1 1 22 12c0 5.52-4.48 10-10 10z"/></svg>
+                        Me prevenir
+                    </a>
+                </div>
+            </div>
+
+            <form method="post" action="{% url 'mark_contribution' pk=download_request.id %}" class="wave-confirm-form">
+                {% csrf_token %}
+                <div class="wave-confirm-row">
+                    <label for="confirmAmount" class="wave-confirm-label">
+                        J'ai contribue (montant, optionnel)
+                    </label>
+                    <div class="wave-confirm-input-row">
+                        <input type="number" id="confirmAmount" name="amount" min="0"
+                               placeholder="Ex: 2000" class="form-input wave-confirm-input">
+                        <button type="submit" class="btn wave-confirm-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            J'ai contribue
+                        </button>
+                    </div>
+                </div>
+                <p class="wave-confirm-note">
+                    Ce bouton est facultatif — il nous aide juste a vous remercier personnellement.
+                </p>
+            </form>
+
+            <div class="modal-later-row">
+                <button type="button" class="modal-later-btn" data-close-modal>
+                    Plus tard, d'abord je decouvre le logiciel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer" style="padding: 2rem 0;">
+    <div class="section-inner">
+        <div class="footer-bottom" style="border:none;padding:0;">
+            &copy; 2026 TOPORAHMA — Bourahma Ouattara Djakalia.
+            <a href="{% url 'portfolio' %}" style="color:var(--teal-light);margin-left:.5rem;">Retour a l'accueil</a>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    // ========== MODAL LOGIC ==========
+    var modal = document.getElementById('supportModal');
+    var storageKey = 'toporahma.supportModalSeen';
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-open-modal="support"]').forEach(function(btn) {
+        btn.addEventListener('click', openModal);
+    });
+    document.querySelectorAll('[data-close-modal]').forEach(function(btn) {
+        btn.addEventListener('click', closeModal);
+    });
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+    });
+
+    // Auto-show 3.5s after arrival, once per session
+    try {
+        if (!sessionStorage.getItem(storageKey)) {
+            setTimeout(function() {
+                openModal();
+                sessionStorage.setItem(storageKey, '1');
+            }, 3500);
+        }
+    } catch (e) { /* private mode */ }
+
+    // Re-open on main download click (slight delay so download starts first)
+    var mainBtn = document.getElementById('mainDownloadBtn');
+    if (mainBtn) {
+        mainBtn.addEventListener('click', function() {
+            setTimeout(openModal, 1800);
+        });
+    }
+
+    // ========== COPY WAVE NUMBER ==========
+    var copyBtn = document.getElementById('waveCopyBtn');
+    var waveNumEl = document.getElementById('waveNumber');
+    var copyLabel = document.getElementById('waveCopyLabel');
+    if (copyBtn && waveNumEl) {
+        copyBtn.addEventListener('click', function() {
+            var num = waveNumEl.getAttribute('data-number') || waveNumEl.textContent.trim();
+            var done = function() {
+                copyLabel.textContent = 'Copie !';
+                copyBtn.classList.add('is-copied');
+                setTimeout(function() {
+                    copyLabel.textContent = 'Copier le numero';
+                    copyBtn.classList.remove('is-copied');
+                }, 1800);
+            };
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(num).then(done);
+            } else {
+                var t = document.createElement('textarea');
+                t.value = num;
+                document.body.appendChild(t); t.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(t);
+                done();
+            }
+        });
+    }
+
+    // ========== QUICK-FILL AMOUNT + AUTO-SAVE EN BD ==========
+    var amountInput = document.getElementById('confirmAmount');
+    var confirmForm = document.querySelector('.wave-confirm-form');
+    var csrfToken = (document.querySelector('[name=csrfmiddlewaretoken]') || {}).value;
+    var markUrl = confirmForm ? confirmForm.getAttribute('action') : null;
+
+    function showToast(text) {
+        var toast = document.getElementById('autoSaveToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'autoSaveToast';
+            toast.className = 'autosave-toast';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = text;
+        toast.classList.add('is-visible');
+        clearTimeout(toast._t);
+        toast._t = setTimeout(function() { toast.classList.remove('is-visible'); }, 2600);
+    }
+
+    function saveAmount(amount, btn) {
+        if (!markUrl || !csrfToken) return;
+        if (btn) btn.classList.add('is-saving');
+        var body = new URLSearchParams();
+        body.append('amount', amount);
+        body.append('csrfmiddlewaretoken', csrfToken);
+        fetch(markUrl, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body.toString(),
+            credentials: 'same-origin'
+        }).then(function(r) {
+            if (btn) { btn.classList.remove('is-saving'); btn.classList.add('is-saved'); }
+            if (r.ok) {
+                showToast('Merci ! Montant ' + Number(amount).toLocaleString('fr-FR') + ' FCFA enregistre.');
+            } else {
+                showToast('Impossible d\'enregistrer — reessayez.');
+            }
+        }).catch(function() {
+            if (btn) btn.classList.remove('is-saving');
+            showToast('Reseau indisponible — montant non enregistre.');
+        });
+    }
+
+    document.querySelectorAll('.wave-amount').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.wave-amount').forEach(function(b) {
+                b.classList.remove('is-active'); b.classList.remove('is-saved');
+            });
+            btn.classList.add('is-active');
+            var amount = btn.getAttribute('data-amount');
+            if (amountInput) amountInput.value = amount;
+            saveAmount(amount, btn);
+        });
+    });
+
+    // Auto-save aussi sur blur de l'input libre (montant personnalise)
+    if (amountInput) {
+        amountInput.addEventListener('blur', function() {
+            var v = parseInt(amountInput.value, 10);
+            if (v && v > 0) saveAmount(v, null);
+        });
+    }
+
+    // ========== REVEAL ANIMATION ==========
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el) { el.classList.add('is-visible'); });
+    } else {
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.1 });
+        els.forEach(function(el) { io.observe(el); });
+    }
+})();
+</script>
+{% endblock %}

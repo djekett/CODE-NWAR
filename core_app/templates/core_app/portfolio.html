@@ -1,0 +1,597 @@
+{% extends "core_app/base.html" %}
+{% load static %}
+
+{% block title %}Bourahma Ouattara Djakalia — Portfolio Professionnel{% endblock %}
+{% block meta_description %}Portfolio de Bourahma Ouattara Djakalia — Geometre topographe, geomaticien, architecte logiciel & Web SIG.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+<style>
+    /* Strategic download CTA */
+    .btn-download-cta {
+        position: relative;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+        color: var(--navy) !important;
+        box-shadow: 0 10px 28px rgba(245, 158, 11, 0.35) !important;
+    }
+    .btn-download-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 36px rgba(245, 158, 11, 0.55) !important;
+    }
+    .btn-pill {
+        display: inline-block;
+        padding: 0.15rem 0.55rem;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        background: var(--navy);
+        color: var(--gold-light);
+        border-radius: 100px;
+        margin-left: 0.35rem;
+    }
+    /* Contact form styles */
+    .p-contact-form-card {
+        grid-column: 1 / -1;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        padding: 2.5rem;
+        backdrop-filter: blur(20px);
+        margin-top: 2rem;
+    }
+    .p-contact-form-card h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+    }
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--gray-300);
+        margin-bottom: 0.4rem;
+    }
+    .form-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-sm);
+        color: var(--white);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        transition: var(--transition);
+    }
+    .form-input:focus {
+        outline: none;
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+    }
+    .form-input::placeholder { color: var(--gray-500); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 2rem;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+        color: var(--white);
+        box-shadow: 0 8px 30px rgba(8, 145, 178, 0.3);
+        transition: var(--transition);
+    }
+    .form-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(8, 145, 178, 0.45);
+    }
+    .alert {
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-sm);
+        margin-bottom: 1.5rem;
+        font-size: 0.92rem;
+    }
+    .alert-success {
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        color: #34d399;
+    }
+    .alert-error {
+        background: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        color: #f87171;
+    }
+    .form-errors {
+        color: #f87171;
+        font-size: 0.82rem;
+        margin-top: 0.25rem;
+    }
+    @media (max-width: 600px) {
+        .form-row { grid-template-columns: 1fr; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <!-- NAVIGATION -->
+    <nav class="p-nav" id="pNav">
+        <div class="p-nav-inner">
+            <a href="{% url 'portfolio' %}" class="p-nav-logo">
+                <img class="p-nav-logo-icon" src="{% static 'images/bourahma.png' %}" alt="TR logo">
+                <span class="p-nav-logo-text">BOURAHMA</span>
+            </a>
+            <ul class="p-nav-links" id="pNavLinks">
+                <li><a href="#p-about">A propos</a></li>
+                <li><a href="#p-skills">Competences</a></li>
+                <li><a href="#p-projects">Projets</a></li>
+                <li><a href="#p-contact">Contact</a></li>
+                <li><a href="{% url 'download_form' %}" class="p-nav-cta">Telecharger TOPORAHMA</a></li>
+            </ul>
+            <button class="p-nav-toggle" id="pNavToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="p-hero" id="p-hero">
+        <div class="p-hero-bg"></div>
+        <div class="p-hero-grid"></div>
+        <div class="p-particles" id="pParticles"></div>
+
+        <div class="p-hero-content">
+            <div class="p-hero-avatar reveal">
+                <img src="{% static 'images/perso.jfif' %}" alt="Bourahma Ouattara Djakalia">
+            </div>
+
+            <div class="p-hero-badge reveal reveal-delay-1">
+                <span class="p-hero-badge-dot"></span>
+                Disponible pour de nouveaux projets
+            </div>
+
+            <h1 class="p-hero-title reveal reveal-delay-2">Bourahma Ouattara<br>Djakalia</h1>
+
+            <p class="p-hero-subtitle reveal reveal-delay-3">
+                <span>Geometre Topographe</span> &bull; <span>Geomaticien</span> &bull; <span>Architecte Logiciel & Web SIG</span>
+            </p>
+
+            <div class="p-hero-actions reveal reveal-delay-4">
+                <a href="{% url 'download_form' %}" class="btn btn-primary btn-download-cta">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Telecharger TOPORAHMA
+                    <span class="btn-pill">GRATUIT</span>
+                </a>
+                <a href="#p-contact" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Me contacter
+                </a>
+                <a href="#p-projects" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    Mes projets
+                </a>
+            </div>
+
+            <div class="p-hero-socials reveal reveal-delay-5">
+                <a href="https://wa.me/2250707779890" target="_blank" rel="noopener" class="p-hero-social" title="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+                <a href="mailto:bourahmaouattara@gmail.com" class="p-hero-social" title="Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/djekett-ouattara-687427213/" target="_blank" rel="noopener" class="p-hero-social" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="{% url 'home' %}" class="p-hero-social" title="TOPORAHMA">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <section class="p-about" id="p-about">
+        <div class="section-inner">
+            <div class="p-about-grid">
+                <div class="p-about-photo reveal">
+                    <img src="{% static 'images/perso.jfif' %}" alt="Bourahma Ouattara Djakalia">
+                    <div class="p-about-photo-badge">
+                        <div class="p-about-photo-badge-title">Bourahma O. Djakalia</div>
+                        <div class="p-about-photo-badge-sub">Geomaticien & Architecte Logiciel</div>
+                    </div>
+                </div>
+
+                <div class="p-about-text">
+                    <div class="section-tag reveal">A propos de moi</div>
+                    <h2 class="reveal reveal-delay-1">Technicien Geometre Topographe & <span>Architecte Logiciel</span></h2>
+                    <p class="reveal reveal-delay-2">
+                        De formation technicien geometre topographe, je suis un geomaticien de profession
+                        et architecte logiciel specialise en Web SIG. Ma passion pour la technologie
+                        et l'innovation m'anime au quotidien dans la conception de solutions logicielles
+                        qui repondent aux besoins reels du terrain.
+                    </p>
+                    <p class="reveal reveal-delay-3">
+                        J'ai concu TOPORAHMA, une solution logicielle a sa premiere version, dans le but
+                        d'aider les geometres topographes et les urbanistes a travailler plus efficacement.
+                        Mon objectif est de democratiser l'acces aux outils professionnels de topographie
+                        et d'urbanisme en Afrique.
+                    </p>
+
+                    <div class="p-about-stats reveal reveal-delay-4">
+                        <div class="p-about-stat">
+                            <div class="p-about-stat-value">120+</div>
+                            <div class="p-about-stat-label">Modules</div>
+                        </div>
+                        <div class="p-about-stat">
+                            <div class="p-about-stat-value">15+</div>
+                            <div class="p-about-stat-label">Formats</div>
+                        </div>
+                        <div class="p-about-stat">
+                            <div class="p-about-stat-value">V2.0</div>
+                            <div class="p-about-stat-label">Version</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETENCES (Dynamic) -->
+    <section class="p-skills" id="p-skills">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Competences</div>
+                <h2 class="section-title reveal reveal-delay-1">Expertises techniques</h2>
+                <p class="section-desc reveal reveal-delay-2">Un profil polyvalent alliant terrain, geomatique et developpement logiciel.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="p-skills-grid">
+                {% for skill in skills %}
+                <div class="p-skill-card reveal{% if not forloop.first %} reveal-delay-{{ forloop.counter0 }}{% endif %}">
+                    <div class="p-skill-icon" style="background: {{ skill.icon_bg_color }};">
+                        {{ skill.icon_svg|safe }}
+                    </div>
+                    <h3 class="p-skill-title">{{ skill.name }}</h3>
+                    <ul class="p-skill-list">
+                        {% for item in skill.items.all %}
+                        <li>{{ item.text }}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="p-skill-bar">
+                        <div class="p-skill-bar-fill {{ skill.bar_css_class }}" data-level="{{ skill.percentage }}"></div>
+                    </div>
+                    <div class="p-skill-level">{{ skill.percentage }}%</div>
+                </div>
+                {% empty %}
+                <!-- Fallback: static skills if DB is empty -->
+                <div class="p-skill-card reveal">
+                    <div class="p-skill-icon" style="background: rgba(8, 145, 178, 0.12);">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20L8.5 8.5 14 14 22 4"/><path d="M22 4L16 4 22 10"/></svg>
+                    </div>
+                    <h3 class="p-skill-title">Topographie & Geodesie</h3>
+                    <ul class="p-skill-list">
+                        <li>Leves topographiques & implantation</li>
+                        <li>Modelisation Numerique de Terrain</li>
+                        <li>Systemes de coordonnees & projections</li>
+                        <li>Calculs geodesiques avances</li>
+                    </ul>
+                    <div class="p-skill-bar">
+                        <div class="p-skill-bar-fill topo" data-level="95"></div>
+                    </div>
+                    <div class="p-skill-level">95%</div>
+                </div>
+                <div class="p-skill-card reveal reveal-delay-1">
+                    <div class="p-skill-icon" style="background: rgba(16, 185, 129, 0.12);">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 class="p-skill-title">SIG & Geomatique</h3>
+                    <ul class="p-skill-list">
+                        <li>Analyse spatiale & cartographie</li>
+                        <li>Traitement de donnees geospatiales</li>
+                        <li>QGIS, ArcGIS, PostGIS</li>
+                        <li>Geoserveurs & interoperabilite OGC</li>
+                    </ul>
+                    <div class="p-skill-bar">
+                        <div class="p-skill-bar-fill sig" data-level="90"></div>
+                    </div>
+                    <div class="p-skill-level">90%</div>
+                </div>
+                <div class="p-skill-card reveal reveal-delay-2">
+                    <div class="p-skill-icon" style="background: rgba(139, 92, 246, 0.12);">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3 class="p-skill-title">Developpement logiciel</h3>
+                    <ul class="p-skill-list">
+                        <li>Python, Qt / PySide6</li>
+                        <li>Architecture modulaire</li>
+                        <li>PyVista, VTK, OpenGL</li>
+                        <li>PyInstaller & packaging</li>
+                    </ul>
+                    <div class="p-skill-bar">
+                        <div class="p-skill-bar-fill dev" data-level="88"></div>
+                    </div>
+                    <div class="p-skill-level">88%</div>
+                </div>
+                <div class="p-skill-card reveal reveal-delay-3">
+                    <div class="p-skill-icon" style="background: rgba(245, 158, 11, 0.12);">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="p-skill-title">Architecture Web SIG</h3>
+                    <ul class="p-skill-list">
+                        <li>Leaflet, OpenLayers, Mapbox</li>
+                        <li>GeoServer, MapServer</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>APIs REST geospatiales</li>
+                    </ul>
+                    <div class="p-skill-bar">
+                        <div class="p-skill-bar-fill web" data-level="85"></div>
+                    </div>
+                    <div class="p-skill-level">85%</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS (Dynamic) -->
+    <section class="p-projects" id="p-projects">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Realisations</div>
+                <h2 class="section-title reveal reveal-delay-1">Mes projets</h2>
+                <p class="section-desc reveal reveal-delay-2">Solutions logicielles concues pour les professionnels du terrain et de la geomatique.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="p-projects-grid">
+                {% for project in projects %}
+                <div class="p-project-card{% if project.is_featured %} p-project-featured{% endif %} reveal{% if not forloop.first %} reveal-delay-{{ forloop.counter0 }}{% endif %}">
+                    <div class="p-project-visual">
+                        {% if project.is_featured %}
+                        <div class="p-project-badge">Projet principal</div>
+                        {% endif %}
+                        <div class="p-project-visual-inner">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width:100%; height:auto; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);">
+                            {% else %}
+                            <div class="p-project-visual-logo" style="{{ project.placeholder_bg_style }}">
+                                {{ project.placeholder_logo_svg|safe }}
+                            </div>
+                            {% if project.placeholder_text %}
+                            <div class="p-project-visual-text">{{ project.placeholder_text }}</div>
+                            {% endif %}
+                            {% if project.placeholder_sub %}
+                            <div class="p-project-visual-sub">{{ project.placeholder_sub }}</div>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="p-project-content">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        <div class="p-project-tags">
+                            {% for tag in project.tags.all %}
+                            <span class="p-project-tag">{{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+                        {% if project.status == "online" and project.url %}
+                        <a href="{{ project.url }}" class="btn btn-primary" style="width:fit-content;">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Voir le projet
+                        </a>
+                        {% elif project.status == "soon" %}
+                        <span class="p-project-soon">Bientot disponible</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <!-- Fallback: static projects if DB is empty -->
+                <div class="p-project-card p-project-featured reveal">
+                    <div class="p-project-visual">
+                        <div class="p-project-badge">Projet principal</div>
+                        <div class="p-project-visual-inner">
+                            <img src="{% static 'images/img_pricipal.png' %}" alt="Interface Principale de TOPORAHMA" style="width:100%; height:auto; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);">
+                        </div>
+                    </div>
+                    <div class="p-project-content">
+                        <h3>TOPORAHMA v1.0</h3>
+                        <p>Suite logicielle professionnelle tout-en-un pour la topographie, l'urbanisme, la visualisation 3D LIDAR et les calculs d'ingenierie. Plus de 120 modules integres, 15+ formats supportes.</p>
+                        <div class="p-project-tags">
+                            <span class="p-project-tag">Python</span>
+                            <span class="p-project-tag">PySide6 / Qt</span>
+                            <span class="p-project-tag">PyVista</span>
+                            <span class="p-project-tag">VTK</span>
+                            <span class="p-project-tag">LIDAR</span>
+                            <span class="p-project-tag">GIS</span>
+                        </div>
+                        <a href="{% url 'home' %}" class="btn btn-primary" style="width:fit-content;">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Voir le projet
+                        </a>
+                    </div>
+                </div>
+                <div class="p-project-card reveal reveal-delay-1">
+                    <div class="p-project-visual">
+                        <div class="p-project-visual-inner">
+                            <div class="p-project-visual-logo" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <div class="p-project-visual-text">Web SIG</div>
+                            <div class="p-project-visual-sub">Application cartographique</div>
+                        </div>
+                    </div>
+                    <div class="p-project-content">
+                        <h3>Plateforme Web SIG</h3>
+                        <p>Application web de cartographie interactive pour la gestion des donnees geospatiales et la visualisation en temps reel.</p>
+                        <div class="p-project-tags">
+                            <span class="p-project-tag">Leaflet</span>
+                            <span class="p-project-tag">Django</span>
+                            <span class="p-project-tag">PostGIS</span>
+                        </div>
+                        <span class="p-project-soon">Bientot disponible</span>
+                    </div>
+                </div>
+                <div class="p-project-card reveal reveal-delay-2">
+                    <div class="p-project-visual">
+                        <div class="p-project-visual-inner">
+                            <div class="p-project-visual-logo" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            </div>
+                            <div class="p-project-visual-text">Foncier digital</div>
+                            <div class="p-project-visual-sub">Gestion fonciere</div>
+                        </div>
+                    </div>
+                    <div class="p-project-content">
+                        <h3>Foncier digital</h3>
+                        <p>Solution de gestion fonciere et cadastrale numerique pour les collectivites territoriales africaines.</p>
+                        <div class="p-project-tags">
+                            <span class="p-project-tag">Python</span>
+                            <span class="p-project-tag">PostgreSQL</span>
+                            <span class="p-project-tag">Django</span>
+                        </div>
+                        <span class="p-project-soon">Bientot disponible</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="p-contact" id="p-contact">
+        <div class="p-contact-glow"></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-tag reveal">Contact</div>
+                <h2 class="section-title reveal reveal-delay-1">Travaillons ensemble</h2>
+                <p class="section-desc reveal reveal-delay-2">N'hesitez pas a me contacter pour discuter de vos projets en topographie, geomatique ou developpement logiciel.</p>
+                <div class="divider reveal reveal-delay-3"></div>
+            </div>
+
+            <div class="p-contact-grid">
+                <a href="https://wa.me/2250707779890" target="_blank" rel="noopener" class="p-contact-card reveal">
+                    <div class="p-contact-icon whatsapp">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>+225 07 07 77 98 90</p>
+                </a>
+
+                <a href="mailto:bourahmaouattara@gmail.com" class="p-contact-card reveal reveal-delay-1">
+                    <div class="p-contact-icon email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <h3>Email</h3>
+                    <p>bourahmaouattara@gmail.com</p>
+                </a>
+
+                <a href="{% url 'home' %}" class="p-contact-card reveal reveal-delay-2">
+                    <div class="p-contact-icon portfolio">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3>TOPORAHMA</h3>
+                    <p>Voir le logiciel</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/djekett-ouattara-687427213/" target="_blank" rel="noopener" class="p-contact-card reveal reveal-delay-3">
+                    <div class="p-contact-icon linkedin">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Bourahma Ouattara</p>
+                </a>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="p-contact-form-card reveal">
+                <h3>Envoyer un message</h3>
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+
+                {% if contact_form.non_field_errors %}
+                <div class="alert alert-error">
+                    {% for error in contact_form.non_field_errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'portfolio' %}#p-contact">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="id_name">Nom complet</label>
+                            {{ contact_form.name }}
+                            {% if contact_form.name.errors %}
+                            <div class="form-errors">{{ contact_form.name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Email</label>
+                            {{ contact_form.email }}
+                            {% if contact_form.email.errors %}
+                            <div class="form-errors">{{ contact_form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_subject">Sujet</label>
+                        {{ contact_form.subject }}
+                        {% if contact_form.subject.errors %}
+                        <div class="form-errors">{{ contact_form.subject.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_message">Message</label>
+                        {{ contact_form.message }}
+                        {% if contact_form.message.errors %}
+                        <div class="form-errors">{{ contact_form.message.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="form-submit">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Envoyer le message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="p-footer">
+        <div class="p-footer-inner">
+            <div class="p-footer-left">
+                <img class="p-footer-logo" src="{% static 'images/bourahma.png' %}" alt="TR logo">
+                <span class="p-footer-copy">&copy; 2026 Bourahma Ouattara Djakalia. Tous droits reserves.</span>
+            </div>
+            <div class="p-footer-right">
+                <a href="{% url 'home' %}" class="p-footer-link">TOPORAHMA</a>
+                <a href="#p-about" class="p-footer-link">A propos</a>
+                <a href="#p-contact" class="p-footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/portfolio.js' %}"></script>
+{% endblock %}

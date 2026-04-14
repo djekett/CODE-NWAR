@@ -1,0 +1,232 @@
+{% extends "core_app/base.html" %}
+{% load static %}
+
+{% block title %}Telecharger TOPORAHMA — Formulaire d'acces{% endblock %}
+{% block meta_description %}Acces au telechargement de TOPORAHMA. Quelques informations nous aident a mieux vous accompagner et a ameliorer le logiciel.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/download.css' %}">
+{% endblock %}
+
+{% block body %}
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="{% url 'portfolio' %}" class="nav-logo">
+            <img class="nav-logo-icon" src="{% static 'images/bourahma.png' %}" alt="TR logo">
+            <span>TOPORAHMA</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'home' %}">TOPORAHMA</a></li>
+            <li><a href="{% url 'home' %}#features">Fonctionnalites</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="dl-page">
+    <div class="dl-bg-glow"></div>
+    <div class="section-inner">
+        <div class="dl-hero reveal">
+            <div class="dl-hero-badge">
+                <span class="dl-hero-badge-dot"></span>
+                Derniere etape avant telechargement
+            </div>
+            <h1 class="dl-hero-title">Telecharger TOPORAHMA</h1>
+            <p class="dl-hero-subtitle">
+                TOPORAHMA est 100% gratuit. Quelques informations nous permettent
+                de mieux comprendre votre usage, de vous offrir un meilleur support
+                et de continuer a ameliorer le logiciel pour les professionnels d'Afrique.
+            </p>
+        </div>
+
+        <div class="dl-grid">
+            <!-- FORM -->
+            <div class="dl-card reveal">
+                <div class="dl-card-header">
+                    <div class="dl-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="dl-card-title">Vos informations</h2>
+                        <p class="dl-card-sub">Ces donnees restent confidentielles.</p>
+                    </div>
+                </div>
+
+                <form method="post" class="dl-form" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="dl-alert dl-alert-error">{{ form.non_field_errors }}</div>
+                    {% endif %}
+
+                    <div class="dl-section-label">Identite</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.full_name.id_for_label }}">Nom complet *</label>
+                            {{ form.full_name }}
+                            {{ form.full_name.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email *</label>
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">Telephone *</label>
+                            {{ form.phone }}
+                            {{ form.phone.errors }}
+                        </div>
+                    </div>
+
+                    <div class="dl-section-label">Profil professionnel</div>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="{{ form.profession.id_for_label }}">Profession *</label>
+                            {{ form.profession }}
+                            {{ form.profession.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.organization.id_for_label }}">Entreprise / Organisation</label>
+                            {{ form.organization }}
+                            {{ form.organization.errors }}
+                        </div>
+                    </div>
+
+                    <div class="dl-section-label">Localisation</div>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="{{ form.country.id_for_label }}">Pays *</label>
+                            {{ form.country }}
+                            {{ form.country.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.city.id_for_label }}">Ville</label>
+                            {{ form.city }}
+                            {{ form.city.errors }}
+                        </div>
+                    </div>
+
+                    <div class="dl-section-label">Contexte</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.heard_from.id_for_label }}">Comment nous avez-vous connu ?</label>
+                            {{ form.heard_from }}
+                            {{ form.heard_from.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.intended_use.id_for_label }}">Usage prevu du logiciel</label>
+                            {{ form.intended_use }}
+                            {{ form.intended_use.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        {{ form.accepts_newsletter }}
+                        <label for="{{ form.accepts_newsletter.id_for_label }}">
+                            Je souhaite recevoir les mises a jour, conseils d'utilisation et nouveautes de TOPORAHMA.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary dl-submit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Acceder au telechargement
+                    </button>
+
+                    <p class="dl-privacy">
+                        En validant, vous acceptez que vos informations soient utilisees
+                        uniquement pour le suivi du telechargement et l'amelioration du logiciel.
+                        Aucune donnee n'est revendue.
+                    </p>
+                </form>
+            </div>
+
+            <!-- WHY -->
+            <aside class="dl-side">
+                <div class="dl-why reveal">
+                    <h3 class="dl-why-title">Pourquoi ce formulaire ?</h3>
+                    <ul class="dl-why-list">
+                        <li>
+                            <span class="dl-why-ico">1</span>
+                            <div>
+                                <strong>Mieux vous accompagner</strong>
+                                Nous pouvons vous contacter en cas de mise a jour critique ou
+                                pour vous aider a demarrer.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="dl-why-ico">2</span>
+                            <div>
+                                <strong>Ameliorer TOPORAHMA</strong>
+                                Comprendre qui utilise le logiciel nous permet de prioriser les
+                                bonnes fonctionnalites pour votre metier.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="dl-why-ico">3</span>
+                            <div>
+                                <strong>Construire une communaute</strong>
+                                TOPORAHMA est pense pour les professionnels d'Afrique.
+                                Votre profil nourrit cette vision.
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="dl-badges">
+                        <div class="dl-badge">
+                            <strong>100%</strong>
+                            <span>Gratuit</span>
+                        </div>
+                        <div class="dl-badge">
+                            <strong>0</strong>
+                            <span>Pub / spam</span>
+                        </div>
+                        <div class="dl-badge">
+                            <strong>1 min</strong>
+                            <span>A remplir</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER MINIMAL -->
+<footer class="footer" style="padding: 2rem 0;">
+    <div class="section-inner">
+        <div class="footer-bottom" style="border:none;padding:0;">
+            &copy; 2026 TOPORAHMA — Bourahma Ouattara Djakalia.
+            <a href="{% url 'portfolio' %}" style="color:var(--teal-light);margin-left:.5rem;">Retour a l'accueil</a>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el) { el.classList.add('is-visible'); });
+        return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.1 });
+    els.forEach(function(el) { io.observe(el); });
+})();
+</script>
+{% endblock %}
