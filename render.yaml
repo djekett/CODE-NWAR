@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: toporahma
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn toporahma_project.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: toporahma-db
+          property: connectionString
+
+databases:
+  - name: toporahma-db
+    plan: free
+    databaseName: portfoliot_bd
+    user: toporahma

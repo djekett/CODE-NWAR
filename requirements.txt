@@ -1,0 +1,12 @@
+# TopoRahma — dependances de production
+Django==5.1.15
+psycopg2-binary==2.9.11
+python-dotenv==1.2.2
+Pillow==12.1.1
+
+# Deploiement (serveur WSGI + fichiers statiques)
+gunicorn==23.0.0
+whitenoise==6.9.0
+
+# Parsing de DATABASE_URL (Render/Heroku/Railway)
+dj-database-url==3.1.2

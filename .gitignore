@@ -1,0 +1,58 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+build/
+dist/
+pip-wheel-metadata/
+
+# ===== Virtual env =====
+venv/
+env/
+.venv/
+ENV/
+
+# ===== Django =====
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+*.pot
+
+# ===== Secrets / env =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ===== IDE / OS =====
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Claude / tools locaux =====
+.claude/launch.json
+.claude/settings.local.json
+.claude/cache/
+
+# ===== Collectstatic output =====
+/staticfiles/
+
+# ===== Backups / dumps =====
+*.bak
+*.dump
+*.sql.gz
+
+# ===== Fichier installeur volumineux =====
+static/images/TOPORAHMA.zip
